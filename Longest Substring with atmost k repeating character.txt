@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxchar(string a, int k)
+{
+    int wstart = 0;
+    map<char,int> m;
+    int maxlen = INT_MIN;
+    
+    for(int wend=0;wend<a.length();wend++)
+    {
+        char c = a[wend];
+            m[c]+=1;
+        while(m.size()>k)
+        {
+             char g = a[wstart];
+             m[g]--;
+            
+             if(m[g]==0)
+             {
+                 m.erase(g);
+             }
+              wstart++;
+        }
+        
+        maxlen=max(maxlen,wend-wstart+1);
+        
+    }
+    return maxlen;
+}
+
+int main() {
+    cout<<maxchar("aaacccfghdj",2);
+
+    return 0;
+}
